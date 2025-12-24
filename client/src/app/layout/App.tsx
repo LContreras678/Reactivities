@@ -35,6 +35,21 @@ const handleCancelSelectActivity = () => {
   setSelectedActivity(undefined);
 }
 
+const handleSubmitForm = (activity: Activity) => {
+  if (activity.id) {
+    setActivities(activities.map(x => x.id === activity.id ? activity : x));
+  } else {
+    const newActivity = {...activity, id:activities.length.toString()}
+    setSelectedActivity(newActivity);
+    setActivities([...activities, newActivity])
+  }
+  setEditMode(false);
+}
+
+const handleDelete = (id: string) => {
+  setActivities(activities.filter(x => x.id !== id))
+}
+
 // styling in TSX is by using sx={{}}
 // Inside the curly braces are the paramters to change the look
   return (
@@ -50,6 +65,8 @@ const handleCancelSelectActivity = () => {
           editMode={editMode}
           openForm={handleOpenForm}
           closeForm={handleFormClose}
+          submitForm={handleSubmitForm}
+          deleteActivity={handleDelete}
         />
       </Container>
     </Box>
