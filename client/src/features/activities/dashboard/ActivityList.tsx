@@ -8,14 +8,13 @@ type Props = {
   deleteActivity: (id: string) => void;
 }
 
-export default function ActivityList({activities, selectActivity, cancelSelectedActivity, deleteActivity}: Props) {
+export default function ActivityList({activities, selectActivity, deleteActivity}: Props) {
   return (
     <Box sx={{display: "flex", flexDirection: 'column', gap: 3}}>
         {activities.map(activity => (
             <ActivityCard key={activity.id} 
             activity={activity} 
-            selectActivity={selectActivity} 
-            cancelSelectedActivity={cancelSelectedActivity} 
+            selectActivity={selectActivity}
             deleteActivity={deleteActivity}/>
         ))}
     </Box>
